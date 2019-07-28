@@ -46,7 +46,7 @@ public class StatusBarOverlay extends ViewGroup {
                 WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
 
         localLayoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-        localLayoutParams.height = (int) (50 * activity.getResources().getDisplayMetrics().scaledDensity);
+        localLayoutParams.height = (int) (24 * activity.getResources().getDisplayMetrics().scaledDensity);
         localLayoutParams.format = PixelFormat.TRANSPARENT;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -59,7 +59,7 @@ public class StatusBarOverlay extends ViewGroup {
         System.out.println("Installing StatusBarOverlay");
         return view;
     }
-    
+
     static StatusBarOverlay createOrObtainPermission(Activity activity) {
         if (Build.VERSION.SDK_INT >= 23) { // added in API level 23
             try {
@@ -77,7 +77,7 @@ public class StatusBarOverlay extends ViewGroup {
         }
         return create(activity);
     }
-    
+
     void destroy(Activity activity) {
         WindowManager manager = ((WindowManager) activity
                 .getApplicationContext()
