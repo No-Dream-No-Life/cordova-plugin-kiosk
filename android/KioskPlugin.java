@@ -3,7 +3,6 @@ package jk.cordova.plugin.kiosk;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
-
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
@@ -40,10 +39,10 @@ public class KioskPlugin extends CordovaPlugin {
                 intent.setComponent(new ComponentName("android", "com.android.internal.app.ResolverActivity"));
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                Intent chooser = Intent.createChooser(intent, "Select destination...");
-                if (intent.resolveActivity(cordova.getActivity().getPackageManager()) != null) {
-                    cordova.getActivity().startActivity(chooser);
-                }
+//                Intent chooser = Intent.createChooser(intent, "Select destination...");
+//                if (intent.resolveActivity(cordova.getActivity().getPackageManager()) != null) {
+                cordova.getActivity().startActivity(intent);
+//                }
 
                 callbackContext.success();
                 return true;
