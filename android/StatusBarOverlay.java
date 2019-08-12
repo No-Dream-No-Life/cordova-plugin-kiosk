@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+
 import java.lang.reflect.Method;
 
 // from https://github.com/ngocdaothanh/cordova-plugin-unswipable-android-status-bar
@@ -59,7 +60,7 @@ public class StatusBarOverlay extends ViewGroup {
         System.out.println("Installing StatusBarOverlay");
         return view;
     }
-    
+
     static StatusBarOverlay createOrObtainPermission(Activity activity) {
         if (Build.VERSION.SDK_INT >= 23) { // added in API level 23
             try {
@@ -77,7 +78,7 @@ public class StatusBarOverlay extends ViewGroup {
         }
         return create(activity);
     }
-    
+
     void destroy(Activity activity) {
         WindowManager manager = ((WindowManager) activity
                 .getApplicationContext()
