@@ -59,7 +59,7 @@ public class StatusBarOverlay extends ViewGroup {
         System.out.println("Installing StatusBarOverlay");
         return view;
     }
-
+    
     static StatusBarOverlay createOrObtainPermission(Activity activity) {
         if (Build.VERSION.SDK_INT >= 23) { // added in API level 23
             try {
@@ -77,7 +77,7 @@ public class StatusBarOverlay extends ViewGroup {
         }
         return create(activity);
     }
-
+    
     void destroy(Activity activity) {
         WindowManager manager = ((WindowManager) activity
                 .getApplicationContext()
