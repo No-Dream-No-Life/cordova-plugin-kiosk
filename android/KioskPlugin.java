@@ -35,8 +35,8 @@ public class KioskPlugin extends CordovaPlugin {
 
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
-                intent.addCategory(Intent.CATEGORY_DEFAULT);
-                intent.setComponent(new ComponentName("android", "com.android.internal.app.ResolverActivity"));
+//                intent.addCategory(Intent.CATEGORY_DEFAULT);
+//                intent.setComponent(new ComponentName("android", "com.android.internal.app.ResolverActivity"));
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 Intent chooser = Intent.createChooser(intent, "Select destination...");
