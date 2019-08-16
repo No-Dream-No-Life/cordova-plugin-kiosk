@@ -41,17 +41,17 @@ public class KioskActivity extends CordovaActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.init();
-        
+
         if (running) {
             finish(); // prevent more instances of kiosk activity
         }
-        
+
         loadUrl(launchUrl);
-        
+
         // https://github.com/apache/cordova-plugin-statusbar/blob/master/src/android/StatusBar.java
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        
+
         // https://github.com/hkalina/cordova-plugin-kiosk/issues/14
         View decorView = getWindow().getDecorView();
         // Hide the status bar.
@@ -60,9 +60,9 @@ public class KioskActivity extends CordovaActivity {
         // status bar is hidden, so hide that too if necessary.
         ActionBar actionBar = getActionBar();
         if (actionBar != null) actionBar.hide();
-        
+
         // add overlay to prevent statusbar access by swiping
-//        statusBarOverlay = StatusBarOverlay.createOrObtainPermission(this);
+        statusBarOverlay = StatusBarOverlay.createOrObtainPermission(this);
     }
 
     @Override
@@ -80,14 +80,14 @@ public class KioskActivity extends CordovaActivity {
             ActivityManager activityManager = (ActivityManager) getApplicationContext()
                     .getSystemService(Context.ACTIVITY_SERVICE);
             activityManager.moveTaskToFront(getTaskId(), 0);
-    }     
-    
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         System.out.println("onKeyDown event: keyCode = " + event.getKeyCode());
         return ! allowedKeys.contains(event.getKeyCode()); // prevent event from being propagated if not allowed
     }
-    
+
     @Override
     public void finish() {
         System.out.println("Never finish...");
@@ -100,13 +100,13 @@ public class KioskActivity extends CordovaActivity {
         super.onWindowFocusChanged(hasFocus);
         if(!hasFocus) {
             System.out.println("Focus lost - closing system dialogs");
-            
+
             Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             sendBroadcast(closeDialog);
-            
+
             ActivityManager am = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
             am.moveTaskToFront(getTaskId(), ActivityManager.MOVE_TASK_WITH_HOME);
-            
+
             // sometime required to close opened notification area
             Timer timer = new Timer();
             timer.schedule(new TimerTask(){
