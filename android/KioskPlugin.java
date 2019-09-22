@@ -33,15 +33,15 @@ public class KioskPlugin extends CordovaPlugin {
 
             } else if (EXIT_KIOSK.equals(action)) {
 
-//                Intent intent = new Intent(Intent.ACTION_MAIN);
-//                intent.addCategory(Intent.CATEGORY_HOME);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//
-//                Intent chooser = Intent.createChooser(intent, "Select destination...");
-//                if (intent.resolveActivity(cordova.getActivity().getPackageManager()) != null) {
-//                    cordova.getActivity().startActivity(chooser);
-//                }
-                cordova.getActivity().startActivity(new Intent(Settings.ACTION_HOME_SETTINGS));
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                Intent chooser = Intent.createChooser(intent, "Select destination...");
+                if (intent.resolveActivity(cordova.getActivity().getPackageManager()) != null) {
+                    cordova.getActivity().startActivity(chooser);
+                }
+//                cordova.getActivity().startActivity(new Intent(Settings.ACTION_HOME_SETTINGS));
 
                 callbackContext.success();
                 return true;
